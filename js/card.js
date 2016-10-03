@@ -30,8 +30,6 @@ $(function(){
         var profileurl = json.html_url;
         var location   = json.location;
         var followersnum = json.followers;
-        var followingnum = json.following;
-        var reposnum     = json.public_repos;
         
 		
         if(fullname == undefined) { fullname = username; }
@@ -48,7 +46,7 @@ $(function(){
 		}
 		
 		var newUser = '<div class = "cardblock" id = "user"><img id="removebtn" src= "./css/close.png" ><img id="user_avatar" src= '+ aviurl +' > <hr>';
-		var userName = '<h2>' + fullname + '</h2>';
+		var userName = '<a style="display:block" href="'+ profileurl + '"><h2>' + fullname + '</h2></a>';
 		var userDetails  = '<div id= "locationdetails">' + location + '</div>' + '<div id = "followersnumber"> <p> Followers: <span id = "followersnum">' + followersnum + '</span></div>' +'</div>';
 		$(newUser + userName + userDetails).appendTo('#cardcontainer');
 		$('#ghusername').val("");
@@ -58,7 +56,7 @@ $(function(){
     }); // end requestJSON Ajax call
   }); // end click event handler
   
-	$('#cardcontainer').on('click', 'img' ,function(e){
+	$('#cardcontainer').on('click', '#removebtn' ,function(e){
 		$(this).parent().remove();
 	});
 	
@@ -108,4 +106,4 @@ $(function(){
 		  }
 		});
 	  }
-});
+}); 
